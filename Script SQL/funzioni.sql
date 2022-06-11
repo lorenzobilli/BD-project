@@ -18,4 +18,4 @@ AS
     $$;
 
 -- Chiamate alle funzioni definite
-SELECT challenges_longer_average_duration(1);
+SELECT challenges_longer_average_duration(1) AS id_sfida;

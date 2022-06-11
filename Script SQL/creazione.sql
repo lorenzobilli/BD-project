@@ -56,9 +56,9 @@ CREATE TABLE IF NOT EXISTS squadra
     numero_dadi INT NOT NULL,
     valore_dadi INT NOT NULL,
     id_sfida INT NOT NULL,
-    nome_icona VARCHAR(100) NOT NULL,
+    nome_icona VARCHAR(100),
     CHECK (valore_dadi >= 0),
-    PRIMARY KEY (nome, id_sfida, nome_icona),
+    PRIMARY KEY (nome, id_sfida),
     FOREIGN KEY (id_sfida) REFERENCES sfida(id),
     FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
@@ -92,13 +92,11 @@ CREATE TABLE IF NOT EXISTS gradino
     id_podio SERIAL,
     pos_x INT NOT NULL,
     pos_y INT NOT NULL,
-    nome_squadra VARCHAR(50),
-    id_sfida INT,
     nome_icona VARCHAR(100),
     CHECK (numero BETWEEN 1 AND 3),
     PRIMARY KEY (numero, id_podio),
     FOREIGN KEY (id_podio) REFERENCES podio(id_tabellone),
-    FOREIGN KEY (nome_squadra, id_sfida, nome_icona) REFERENCES squadra(nome, id_sfida, nome_icona)
+    FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
 
 CREATE TABLE IF NOT EXISTS giocatore
@@ -208,13 +206,15 @@ CREATE TABLE IF NOT EXISTS casella
     nome_video VARCHAR(50),
     id_task INT,
     id_quiz INT,
+    nome_icona VARCHAR(100),
     -- CHECK ((id_task IS NOT NULL) AND (id_quiz IS NOT NULL)),
     PRIMARY KEY (num_ord, id_gioco),
     FOREIGN KEY (id_gioco) REFERENCES gioco(id),
     FOREIGN KEY (id_tabellone) REFERENCES tabellone(id_gioco),
     FOREIGN KEY (nome_video) REFERENCES video(nome),
     FOREIGN KEY (id_task) REFERENCES task(id),
-    FOREIGN KEY (id_quiz) REFERENCES quiz(id)
+    FOREIGN KEY (id_quiz) REFERENCES quiz(id),
+    FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
 
 CREATE TABLE IF NOT EXISTS casella_serpente
@@ -244,10 +244,9 @@ CREATE TABLE IF NOT EXISTS giocatore_appartiene_squadra
     email_giocatore VARCHAR(50) NOT NULL,
     nome_squadra VARCHAR(50) NOT NULL,
     id_sfida INT NOT NULL,
-    nome_icona VARCHAR(100) NOT NULL,
     PRIMARY KEY (email_giocatore, nome_squadra),
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email),
-    FOREIGN KEY (nome_squadra, id_sfida, nome_icona) REFERENCES squadra(nome, id_sfida, nome_icona)
+    FOREIGN KEY (nome_squadra, id_sfida) REFERENCES squadra(nome, id_sfida)
 );
 
 CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_task
