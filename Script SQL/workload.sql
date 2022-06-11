@@ -1,4 +1,4 @@
-SET SCHEMA 'sfide_online';
+SET SCHEMA 'online_challenge_activity';
 
 --
 -- Query specificate come carico di lavoro del DBMS

@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS sfide_online;
-SET SCHEMA 'sfide_online';
+CREATE SCHEMA IF NOT EXISTS online_challenge_activity;
+SET SCHEMA 'online_challenge_activity';
 
 CREATE TABLE IF NOT EXISTS set_icone
 (
@@ -39,10 +39,12 @@ CREATE TABLE IF NOT EXISTS sfida
     data_sfida DATE NOT NULL,
     ora_sfida TIME NOT NULL,
     moderata BOOLEAN,
+    durata INTERVAL NOT NULL,
     durata_max INTERVAL NOT NULL,
     max_squadre INT NOT NULL,
     id_gioco SERIAL,
     CHECK (max_squadre >= 2),
+    CONSTRAINT sfida_durata_max CHECK (durata <= durata_max),
     PRIMARY KEY (id),
     FOREIGN KEY (id_gioco) REFERENCES gioco(id)
 );
