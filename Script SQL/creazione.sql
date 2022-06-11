@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS sfida
 CREATE TABLE IF NOT EXISTS squadra
 (
     nome VARCHAR(50) NOT NULL,
-    punteggio INT NOT NULL,
-    numero_dadi INT NOT NULL,
-    valore_dadi INT NOT NULL,
+    punteggio INT DEFAULT 0 NOT NULL,
+    numero_dadi INT DEFAULT 0 NOT NULL,
+    valore_dadi INT DEFAULT 0 NOT NULL,
     id_sfida INT NOT NULL,
     nome_icona VARCHAR(100),
     CHECK (valore_dadi >= 0),
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS giocatore_appartiene_squadra
     email_giocatore VARCHAR(50) NOT NULL,
     nome_squadra VARCHAR(50) NOT NULL,
     id_sfida INT NOT NULL,
-    PRIMARY KEY (email_giocatore, nome_squadra),
+    PRIMARY KEY (email_giocatore, nome_squadra, id_sfida),
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email),
     FOREIGN KEY (nome_squadra, id_sfida) REFERENCES squadra(nome, id_sfida)
 );
