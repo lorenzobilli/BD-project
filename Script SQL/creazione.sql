@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS tabellone
 
 CREATE TABLE IF NOT EXISTS podio
 (
-    id_tabellone SERIAL,
+    id_tabellone INT NOT NULL,
     PRIMARY KEY (id_tabellone),
     FOREIGN KEY (id_tabellone) REFERENCES tabellone(id_gioco)
 );
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS podio
 CREATE TABLE IF NOT EXISTS gradino
 (
     numero INT NOT NULL,
-    id_podio SERIAL,
+    id_podio INT NOT NULL,
     pos_x INT NOT NULL,
     pos_y INT NOT NULL,
     nome_icona VARCHAR(100),
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_task
     email_giocatore VARCHAR(50) NOT NULL,
     id_task SERIAL,
     id_risposta_task SERIAL,
-    tempo_impiegato INTERVAL,
+    tempo_impiegato INTERVAL NOT NULL,
     PRIMARY KEY (email_giocatore, id_task, id_risposta_task),
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email),
     FOREIGN KEY (id_task, id_risposta_task) REFERENCES risposta_task(id_task, id)
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_quiz
     email_giocatore VARCHAR(50) NOT NULL,
     id_quiz SERIAL,
     id_risposta_quiz SERIAL,
-    tempo_impiegato INTERVAL,
+    tempo_impiegato INTERVAL NOT NULL,
     PRIMARY KEY (email_giocatore, id_quiz, id_risposta_quiz),
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email),
     FOREIGN KEY (id_quiz, id_risposta_quiz) REFERENCES risposta_quiz(id_quiz, id)
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS caposquadra_fornisce_risposta_task
     email_caposquadra VARCHAR(50) NOT NULL,
     id_task SERIAL,
     id_risposta_task SERIAL,
-    tempo_impiegato INTERVAL,
+    tempo_impiegato INTERVAL NOT NULL,
     PRIMARY KEY (email_caposquadra, id_task, id_risposta_task),
     FOREIGN KEY (email_caposquadra) REFERENCES caposquadra(email_giocatore),
     FOREIGN KEY (id_task, id_risposta_task) REFERENCES risposta_task(id_task, id)
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS caposquadra_fornisce_risposta_quiz
     email_caposquadra VARCHAR(50) NOT NULL,
     id_quiz SERIAL,
     id_risposta_quiz SERIAL,
-    tempo_impiegato INTERVAL,
+    tempo_impiegato INTERVAL NOT NULL,
     PRIMARY KEY (email_caposquadra, id_quiz, id_risposta_quiz),
     FOREIGN KEY (email_caposquadra) REFERENCES caposquadra(email_giocatore),
     FOREIGN KEY (id_quiz, id_risposta_quiz) REFERENCES risposta_quiz(id_quiz, id)
