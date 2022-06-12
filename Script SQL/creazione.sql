@@ -207,7 +207,6 @@ CREATE TABLE IF NOT EXISTS casella
     id_task INT,
     id_quiz INT,
     nome_icona VARCHAR(100),
-    -- CHECK ((id_task IS NOT NULL) AND (id_quiz IS NOT NULL)),
     PRIMARY KEY (num_ord, id_gioco),
     FOREIGN KEY (id_gioco) REFERENCES gioco(id),
     FOREIGN KEY (id_tabellone) REFERENCES tabellone(id_gioco),
@@ -223,6 +222,7 @@ CREATE TABLE IF NOT EXISTS casella_serpente
     id_gioco_casella SERIAL,
     destinazione INT NOT NULL,
     id_gioco_casella_destinazione SERIAL,
+    CHECK (destinazione < num_ord_casella),
     PRIMARY KEY (num_ord_casella, id_gioco_casella),
     FOREIGN KEY (num_ord_casella, id_gioco_casella) REFERENCES casella(num_ord, id_gioco),
     FOREIGN KEY (destinazione, id_gioco_casella_destinazione) REFERENCES casella(num_ord, id_gioco)
@@ -234,6 +234,7 @@ CREATE TABLE IF NOT EXISTS casella_scala
     id_gioco_casella SERIAL,
     destinazione INT NOT NULL,
     id_gioco_casella_destinazione SERIAL,
+    CHECK (destinazione > num_ord_casella),
     PRIMARY KEY (num_ord_casella, id_gioco_casella),
     FOREIGN KEY (num_ord_casella, id_gioco_casella) REFERENCES casella(num_ord, id_gioco),
     FOREIGN KEY (destinazione, id_gioco_casella) REFERENCES casella(num_ord, id_gioco)
