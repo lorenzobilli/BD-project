@@ -1,12 +1,20 @@
+-- ------------------------------------------------------------------
+-- Basi di Dati A.A. 2020-2021 - Progetto 'Online Challenge Activity
+--
+-- Lorenzo Billi (3930391
+-- ------------------------------------------------------------------
+
 CREATE SCHEMA IF NOT EXISTS online_challenge_activity;
 SET SCHEMA 'online_challenge_activity';
 
+-- Tuple: 5, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS set_icone
 (
     nome VARCHAR(100) NOT NULL,
     PRIMARY KEY (nome)
 );
 
+-- Tuple: 100, Dimensione: 40 kB, Pagine: 5
 CREATE TABLE IF NOT EXISTS gioco
 (
     id SERIAL,
@@ -22,6 +30,7 @@ CREATE TABLE IF NOT EXISTS gioco
     FOREIGN KEY (nome_set_icone) REFERENCES set_icone(nome)
 );
 
+-- Tuple: 50, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS icona
 (
     nome VARCHAR(100) NOT NULL,
@@ -33,6 +42,7 @@ CREATE TABLE IF NOT EXISTS icona
     FOREIGN KEY (nome_set_icone) REFERENCES set_icone(nome)
 );
 
+-- Tuple: 10000, Dimensione: 1960 kB, Pagine: 245
 CREATE TABLE IF NOT EXISTS sfida
 (
     id SERIAL,
@@ -49,6 +59,7 @@ CREATE TABLE IF NOT EXISTS sfida
     FOREIGN KEY (id_gioco) REFERENCES gioco(id)
 );
 
+-- Tuple: 50, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS squadra
 (
     nome VARCHAR(50) NOT NULL,
@@ -63,6 +74,7 @@ CREATE TABLE IF NOT EXISTS squadra
     FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
 
+-- Tuple: 10, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS sfondo
 (
     nome VARCHAR(50) NOT NULL,
@@ -70,6 +82,7 @@ CREATE TABLE IF NOT EXISTS sfondo
     PRIMARY KEY (nome)
 );
 
+-- Tuple: 100, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS tabellone
 (
     id_gioco INT NOT NULL,
@@ -79,6 +92,7 @@ CREATE TABLE IF NOT EXISTS tabellone
     FOREIGN KEY (nome_sfondo) REFERENCES sfondo(nome)
 );
 
+-- Tuple: 100, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS podio
 (
     id_tabellone INT NOT NULL,
@@ -86,6 +100,7 @@ CREATE TABLE IF NOT EXISTS podio
     FOREIGN KEY (id_tabellone) REFERENCES tabellone(id_gioco)
 );
 
+-- Tuple: 300, Dimensione: 56 kB, Pagine: 7
 CREATE TABLE IF NOT EXISTS gradino
 (
     numero INT NOT NULL,
@@ -99,6 +114,7 @@ CREATE TABLE IF NOT EXISTS gradino
     FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
 
+-- Tuple: 34, Dimensione: 40 kB, Pagine: 5
 CREATE TABLE IF NOT EXISTS giocatore
 (
     email VARCHAR(50) NOT NULL,
@@ -110,6 +126,7 @@ CREATE TABLE IF NOT EXISTS giocatore
     UNIQUE (nickname)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS coach
 (
     email_giocatore VARCHAR(50) NOT NULL,
@@ -117,6 +134,7 @@ CREATE TABLE IF NOT EXISTS coach
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS caposquadra
 (
     email_giocatore VARCHAR(50) NOT NULL,
@@ -124,6 +142,7 @@ CREATE TABLE IF NOT EXISTS caposquadra
     FOREIGN KEY (email_giocatore) REFERENCES giocatore(email)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS admin
 (
     email VARCHAR(50) NOT NULL,
@@ -133,6 +152,7 @@ CREATE TABLE IF NOT EXISTS admin
     PRIMARY KEY (email)
 );
 
+-- Tuple: 10, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS video
 (
     nome VARCHAR(50) NOT NULL,
@@ -140,6 +160,7 @@ CREATE TABLE IF NOT EXISTS video
     PRIMARY KEY (nome)
 );
 
+-- Tuple: 100, Dimensione: 32 kB, Pagine: 4
 CREATE TABLE IF NOT EXISTS task
 (
     id SERIAL NOT NULL,
@@ -148,6 +169,7 @@ CREATE TABLE IF NOT EXISTS task
     PRIMARY KEY (id)
 );
 
+-- Tuple: 100, Dimensione: 32 kB, Pagine: 4
 CREATE TABLE IF NOT EXISTS risposta_task
 (
     id SERIAL NOT NULL,
@@ -165,6 +187,7 @@ CREATE TABLE IF NOT EXISTS risposta_task
     FOREIGN KEY (email_caposquadra) REFERENCES caposquadra(email_giocatore)
 );
 
+-- Tuple: 10, Dimensione: 24 kB, Pagine: 3
 CREATE TABLE IF NOT EXISTS immagine
 (
     nome VARCHAR(50) NOT NULL,
@@ -172,6 +195,7 @@ CREATE TABLE IF NOT EXISTS immagine
     PRIMARY KEY (nome)
 );
 
+-- Tuple: 100, Dimensione: 32 kB, Pagine: 4
 CREATE TABLE IF NOT EXISTS quiz
 (
     id SERIAL,
@@ -182,6 +206,7 @@ CREATE TABLE IF NOT EXISTS quiz
     FOREIGN KEY (nome_immagine) REFERENCES immagine(nome)
 );
 
+-- Tuple: 500, Dimensione: 104 kB, Pagine: 13
 CREATE TABLE IF NOT EXISTS risposta_quiz
 (
     id SERIAL,
@@ -195,6 +220,7 @@ CREATE TABLE IF NOT EXISTS risposta_quiz
     FOREIGN KEY (nome_immagine) REFERENCES immagine(nome)
 );
 
+-- Tuple: 6024, Dimensione: 632 kB, Pagine: 79
 CREATE TABLE IF NOT EXISTS casella
 (
     num_ord INT NOT NULL,
@@ -216,6 +242,7 @@ CREATE TABLE IF NOT EXISTS casella
     FOREIGN KEY (nome_icona) REFERENCES icona(nome)
 );
 
+-- Tuple: 202, Dimensione: 56 kB, Pagine: 7
 CREATE TABLE IF NOT EXISTS casella_serpente
 (
     num_ord_casella INT NOT NULL,
@@ -228,6 +255,7 @@ CREATE TABLE IF NOT EXISTS casella_serpente
     FOREIGN KEY (destinazione, id_gioco_casella_destinazione) REFERENCES casella(num_ord, id_gioco)
 );
 
+-- Tuple: 203, Dimensione: 56 kB, Pagine: 7
 CREATE TABLE IF NOT EXISTS casella_scala
 (
     num_ord_casella INT NOT NULL,
@@ -240,6 +268,7 @@ CREATE TABLE IF NOT EXISTS casella_scala
     FOREIGN KEY (destinazione, id_gioco_casella) REFERENCES casella(num_ord, id_gioco)
 );
 
+-- Tuple: 340, Dimensione: 96 kB, Pagine: 12
 CREATE TABLE IF NOT EXISTS giocatore_appartiene_squadra
 (
     email_giocatore VARCHAR(50) NOT NULL,
@@ -250,6 +279,7 @@ CREATE TABLE IF NOT EXISTS giocatore_appartiene_squadra
     FOREIGN KEY (nome_squadra, id_sfida) REFERENCES squadra(nome, id_sfida)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_task
 (
     email_giocatore VARCHAR(50) NOT NULL,
@@ -261,6 +291,7 @@ CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_task
     FOREIGN KEY (id_task, id_risposta_task) REFERENCES risposta_task(id_task, id)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_quiz
 (
     email_giocatore VARCHAR(50) NOT NULL,
@@ -272,6 +303,7 @@ CREATE TABLE IF NOT EXISTS giocatore_fornisce_risposta_quiz
     FOREIGN KEY (id_quiz, id_risposta_quiz) REFERENCES risposta_quiz(id_quiz, id)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS caposquadra_fornisce_risposta_task
 (
     email_caposquadra VARCHAR(50) NOT NULL,
@@ -283,6 +315,7 @@ CREATE TABLE IF NOT EXISTS caposquadra_fornisce_risposta_task
     FOREIGN KEY (id_task, id_risposta_task) REFERENCES risposta_task(id_task, id)
 );
 
+-- Tuple: 0, Dimensione: 8192 B, Pagine: 1
 CREATE TABLE IF NOT EXISTS caposquadra_fornisce_risposta_quiz
 (
     email_caposquadra VARCHAR(50) NOT NULL,

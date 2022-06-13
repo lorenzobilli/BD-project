@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Basi di Dati A.A. 2020-2021 - Progetto 'Online Challenge Activity
+--
+-- Lorenzo Billi (3930391
+-- ------------------------------------------------------------------
+
 SET SCHEMA 'online_challenge_activity';
 
 -- Query 2A: Determinare i giochi che contegono caselle a cui sono associati task.

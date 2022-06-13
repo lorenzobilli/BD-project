@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Basi di Dati A.A. 2020-2021 - Progetto 'Online Challenge Activity
+--
+-- Lorenzo Billi (3930391
+-- ------------------------------------------------------------------
+
 SET SCHEMA 'online_challenge_activity';
 
 -- Funzione 3A: Determina le sfide che hanno durata superiore alla durata medie delle sfide

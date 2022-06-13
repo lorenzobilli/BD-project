@@ -1,3 +1,9 @@
+-- ------------------------------------------------------------------
+-- Basi di Dati A.A. 2020-2021 - Progetto 'Online Challenge Activity
+--
+-- Lorenzo Billi (3930391
+-- ------------------------------------------------------------------
+
 SET SCHEMA 'online_challenge_activity';
 
 -- Vista ausiliaria: visualizza numero sfide per ogni gioco.
