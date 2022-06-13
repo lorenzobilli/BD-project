@@ -261,11 +261,39 @@ def generate_task_answers():
 	print("\n")
 		
 
+def generate_podium():
+	format = 10
+	for i in range(0, 100):
+		if format == 10:
+			print("")
+			format = 0
+		else:
+			print(" ", end="")
+		print("(" + str(i) + "),", end="")
+		format += 1
+	print("\n")
+
+
+def generate_step():
+	format = 5
+	for i in range(0, 100):
+		for j in range(1, 4):
+			if format == 5:
+				print("")
+				format = 0
+			else:
+				print(" ", end="")
+			print("(" + str(j) + ", " + str(i) + ", 100, 100),", end="")
+			format += 1
+	print("\n")
+
 #generate_games()
-generate_matches()
+#generate_matches()
 #generate_gameboard()
 #generate_quiz()
 #generate_quiz_answers()
 #generate_task()
 #generate_task_answers()
 #generate_boxes()
+#generate_podium()
+generate_step()
